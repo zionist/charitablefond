@@ -1,7 +1,12 @@
 {{set . "title" "Home"}}
 {{template "header.html" .}}
 
-<h1>Your Application Is Ready</h1>
+<h1> {{.hello}} </h1>
+
+<form action="/Application/Hello" method="GET">
+        <input type="text" name="myName" />
+        <input type="submit" value="Say hello!" />
+</form>
 
 {{template "footer.html" .}}
 
