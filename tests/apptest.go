@@ -1,7 +1,7 @@
 package tests
 
 import "github.com/robfig/revel"
-import "charitablefond/app/plugins"
+import "github.com/zionist/charitablefond/app/plugins"
 
 type ApplicationTest struct {
 	revel.TestSuite
