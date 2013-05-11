@@ -4,6 +4,8 @@
 
 GET     /                                       Application.Index
 
+GET     /page/{url}                             Application.Page
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
