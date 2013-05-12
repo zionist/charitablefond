@@ -4,9 +4,13 @@
 
 GET     /                                       Application.Index
 
-#admin part
+#admin create
 GET     /admin/create                           Application.AdminCreatePage
 POST    /admin/create             		Application.CreatePage 
+
+#admin update
+GET     /admin/update/{url}                     Application.AdminUpdatePage
+POST    /admin/update             		Application.UpdatePage 
 
 GET     /page/{url}                             Application.Page
 
