@@ -16,11 +16,13 @@ func (t ApplicationTest) Before() {
 	println("Set up")
 }
 
+/*
 func (t ApplicationTest) TestThatIndexPageWorks() {
 	t.Get("/")
 	t.AssertOk()
 	t.AssertContentType("text/html")
 }
+*/
 
 func (t ApplicationTest) TestConfig() {
 	p := controllers.MongoDbController{}

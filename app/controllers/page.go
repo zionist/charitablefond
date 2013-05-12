@@ -103,7 +103,7 @@ func (c PageController) CreatePage(page_header, page_content, page_url string) r
 	if err := c.SavePage(p); err != nil {
 		c.RenderError(err)
 	}
-	return c.RenderTemplate("Page/AdminPageCreated.html")
+	return c.Redirect("/admin/update/%s", page_url)
 }
 
 func (c PageController) CheckPageExists(url string) (err error, found bool) {

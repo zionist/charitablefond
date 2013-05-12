@@ -40,7 +40,7 @@ func (p *MongoDbController) GetConfig(config_string string, defaul string) (valu
 func (c *MongoDbController) Connect() revel.Result {
 	if Session != nil {
 		revel.INFO.Println("Already connected")
-
+		return nil
 	} else {
 		revel.INFO.Println("Connect to database")
 		if c.Url == "" {
@@ -85,6 +85,7 @@ func (p *MongoDbController) GetConnectionUrl() {
 }
 
 func init() {
+	revel.INFO.Println("Connect started")
 	revel.InterceptMethod((*MongoDbController).Connect, revel.BEFORE)
 }
 
