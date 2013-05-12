@@ -7,13 +7,9 @@ import (
 	"fmt"
 	"github.com/robfig/revel"
 	"labix.org/v2/mgo"
-	"time"
+	"github.com/zionist/charitablefond/app/constants"
 )
 
-const connection_duration = "3s"
-const port = "27017"
-const host = "127.0.0.1"
-const base = "fond"
 
 var required_configs = [...]string{"mongodb.host", "mongodb.port"}
 
@@ -50,9 +46,8 @@ func (c *MongoDbController) Connect() revel.Result {
 		if c.Url == "" {
 			c.GetConnectionUrl()
 		}
-		duration, _ := time.ParseDuration(connection_duration)
 		var err error
-		Session, err = mgo.DialWithTimeout(c.Url, duration)
+		Session, err = mgo.Dial(c.Url)
 		//p.Session.SetMode(mgo.Strong, true)
 		if err != nil {
 			revel.ERROR.Fatal(err)
@@ -73,13 +68,12 @@ func (c *MongoDbController) Disconnect() revel.Result {
 	return nil
 }
 
-// Create connection url from conf or constants
 // TODO: move constants to one file
 func (p *MongoDbController) GetConnectionUrl() {
-	p.Host, _ = p.GetConfig("mongodb.host", host)
-	p.Port, _ = p.GetConfig("mongodb.port", port)
+	p.Host, _ = p.GetConfig("mongodb.host", constants.MongoHost)
+	p.Port, _ = p.GetConfig("mongodb.port", constants.MongoPort)
 	p.User, _ = p.GetConfig("mongodb.user", "")
-	p.Base, _ = p.GetConfig("mongodb.base", base)
+	p.Base, _ = p.GetConfig("mongodb.base", constants.MongoBase)
 	if p.Password == "" {
 		p.Password, _ = p.GetConfig("mongodb.pass", "")
 	}

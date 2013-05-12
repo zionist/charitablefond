@@ -1,0 +1,10 @@
+{{set . "title" "Главная страница"}}
+{{template "header.html" .}}
+
+<div class="container">
+	<h1> {{.page_header}}</h1>
+	{{raw .page_content}}
+</div>
+
+{{template "footer.html" .}}
+

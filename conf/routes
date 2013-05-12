@@ -4,7 +4,12 @@
 
 GET     /                                       Application.Index
 
+#admin part
+GET     /admin/create                           Application.AdminCreatePage
+POST    /admin/create             		Application.CreatePage 
+
 GET     /page/{url}                             Application.Page
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -12,5 +17,7 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 GET     /public/{<.+>filepath}              Static.Serve("public")
 
+
+
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+#*       /{controller}/{action}                  {controller}.{action}

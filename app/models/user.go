@@ -11,6 +11,7 @@ type User struct {
 	Name               string
 	Username, Password string
 	HashedPassword     []byte
+	IsStuff            bool
 }
 
 func (u *User) String() string {

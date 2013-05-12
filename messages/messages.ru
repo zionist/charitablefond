@@ -1,0 +1,3 @@
+#Localization template
+greeting=Привет
+
