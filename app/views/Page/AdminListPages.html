@@ -1,0 +1,22 @@
+{{set . "title" "Страницы сайта"}}
+{{template "header.html" .}}
+
+<div class="container">
+	<h2 class="text-info"> {{.title}} </h2>
+	<table class="table table-hover table-striped">
+	<tr>
+		<th> Заголовок </th>
+		<th> Ссылка </th>
+		<th> Краткое содержание </th>
+	</tr>
+	{{range .pages}}
+	<tr onclick="location.href = '/admin/update/{{.Url}}';">
+		<td> {{.Header}} </td>
+		<td> {{.Url}} </td>
+		<td> {{.Content}} </td>
+	</tr>
+	{{ end }}
+	</table>
+</div>
+
+{{template "footer.html" .}}

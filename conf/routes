@@ -2,17 +2,25 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                                       Application.Index
+GET     /                                       PageController.Index
 
 #admin create
-GET     /admin/create                           Application.AdminCreatePage
-POST    /admin/create             		Application.CreatePage 
+GET     /admin/create                           PageController.AdminCreatePage
+POST    /admin/create             		PageController.CreatePage 
 
 #admin update
-GET     /admin/update/{url}                     Application.AdminUpdatePage
-POST    /admin/update             		Application.UpdatePage 
+GET     /admin/update/{url}                     PageController.AdminUpdatePage
+POST    /admin/update             		PageController.UpdatePage 
 
-GET     /page/{url}                             Application.Page
+#admin delete
+#GET     /admin/update/{url}                     PageController.AdminUpdatePage
+GET    /admin/delete/{url}            		PageController.AdminDelete 
+
+#admin list of pages
+GET     /admin/list                             PageController.AdminListPages
+
+#pages
+GET     /page/{url}                             PageController.Page
 
 
 # Ignore favicon requests

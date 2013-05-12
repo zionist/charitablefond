@@ -2,6 +2,10 @@
 {{template "header.html" .}}
 
 <div class="container">
+	<div class="row"> <p> </p></div>
+	<div class="row">
+		<a href="/admin/list">Список страниц</a> <!--<span class="divider">/</span>-->
+	</div>
 	<h1> {{.page_header}}</h1>
 	{{raw .page_content}}
 </div>

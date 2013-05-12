@@ -18,13 +18,13 @@ var (
 )
 
 type MongoDbController struct {
-	*revel.Controller
 	Host      string
 	Port      string
 	User      string
 	Password  string
 	Base      string
 	Url       string
+	*revel.Controller
 }
 
 //revel.Config.String wrapper

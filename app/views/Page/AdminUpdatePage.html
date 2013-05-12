@@ -1,8 +1,11 @@
 {{set . "title" "Home"}}
 {{template "header.html" .}}
 
-
 <div class="container">
+	<div class="row"> <p> </p></div>
+	<div class="row">
+		<a href="/admin/list">Список страниц</a> <!--<span class="divider">/</span>-->
+	</div>
 	<div class="row">
 		<h3 class="text-info text-right"> Редактировать страницу </h3>
 	</div>
@@ -32,8 +35,17 @@
 			</div>
 		</p>
 		<div class="row">
-			<div class="span2 offset10">
-				<input type="submit" value="Отправить" class="btn btn-primary"/>
+			<div class="span2 offset10"> <input type="submit" value="Отправить" class="btn btn-primary"/> </div>
+		</div>
+		<div class="row"> <p> </p> </div>
+		<div class="row"> <p> </p> </div>
+		<div class="row"> <p> </p> </div>
+		<div class="row">
+			<div class="span1">
+				<a href="/admin/delete/{{.page_url}}" class="btn btn-danger"/>Удалить</a>
+			</div>
+			<div class="span1 offset9">
+				<a href="/page/{{.page_url}}" class="btn btn-info"/>Просмотреть</a>
 			</div>
 		</div>
 	</form>
