@@ -7,11 +7,10 @@ import (
 )
 
 type User struct {
-	UserId             int
 	Name               string
-	Username, Password string
-	HashedPassword     []byte
-	IsStuff            bool
+	Username           string
+	Password           string
+	IsAdmin            bool
 }
 
 func (u *User) String() string {

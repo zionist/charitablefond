@@ -20,7 +20,7 @@ func (c PageController) Index() revel.Result {
 }
 
 //GET page
-func (c PageController) Page(url string) revel.Result {
+func (c PageController) GetPage(url string) revel.Result {
 	revel.INFO.Println("Page.Page started")
 	err, found := c.CheckPageExists(url)
 	if err != nil {
@@ -29,7 +29,7 @@ func (c PageController) Page(url string) revel.Result {
 	if found == false {
 		return c.NotFound("Страница не найдена")
 	}
-	collection := Session.DB(c.Base).C(constants.PageCollectionName)
+	collection := Session.DB(Base).C(constants.PageCollectionName)
 	result := models.Page{}
 	if err = collection.Find(bson.M{"url": url}).One(&result); err != nil {
 		c.RenderError(err)
@@ -41,18 +41,18 @@ func (c PageController) Page(url string) revel.Result {
 
 //Admin pages
 //List of pages
-func (c PageController) AdminListPages() revel.Result {
+func (c PageController) GetAdminListPages() revel.Result {
 	result := []models.Page{}
-	collection := Session.DB(c.Base).C(constants.PageCollectionName)
+	collection := Session.DB(Base).C(constants.PageCollectionName)
 	if err := collection.Find(bson.M{}).All(&result); err != nil {
 		c.RenderError(err)
 	}
 	//TODO: add sorting
-	//Cut content to 32 
+	//Cut content to 120 
 	new_result := []models.Page{}
 	for _, v := range result {
-		if len(v.Content) > 64 {
-			v.Content = v.Content[0:64]
+		if len(v.Content) > 120 {
+			v.Content = v.Content[0:120]
 		}
 		new_result = append(new_result, v)
 	}
@@ -62,7 +62,7 @@ func (c PageController) AdminListPages() revel.Result {
 
 //Delete plain page
 //TODO: add permissions check for deleting
-func (c PageController) AdminDelete(url string) revel.Result {
+func (c PageController) GetAdminDelete(url string) revel.Result {
 	if err := c.DelPages(url); err != nil {
 		return c.RenderError(err)
 	}
@@ -71,7 +71,7 @@ func (c PageController) AdminDelete(url string) revel.Result {
 }
 
 //Create creation page
-func (c PageController) AdminCreatePage() revel.Result {
+func (c PageController) GetAdminCreatePage() revel.Result {
 	return c.RenderTemplate("Page/AdminCreatePage.html")
 }
 
@@ -85,7 +85,7 @@ func (c PageController) CreatePage(page_header, page_content, page_url string) r
 		revel.INFO.Printf("CreatePage validation errors %v", c.Validation.Errors)
 		c.Validation.Keep()
 		c.FlashParams()
-		return c.Redirect(PageController.AdminCreatePage)
+		return c.Redirect(PageController.GetAdminCreatePage)
 	}
 	//TODO: Add permission (sessison check)
 	err, found := c.CheckPageExists(page_url)
@@ -96,7 +96,7 @@ func (c PageController) CreatePage(page_header, page_content, page_url string) r
 		c.Validation.Errors = append(c.Validation.Errors, &revel.ValidationError{fmt.Sprintf("Страница со ссылкой %s уже  создана", page_url), ""})
 		c.Validation.Keep()
 		c.FlashParams()
-		return c.Redirect(PageController.AdminCreatePage)
+		return c.Redirect(PageController.GetAdminCreatePage)
 	}
 	//Save page
 	p := models.Page{Header: page_header, Url: page_url, Content: page_content}
@@ -107,7 +107,7 @@ func (c PageController) CreatePage(page_header, page_content, page_url string) r
 }
 
 func (c PageController) CheckPageExists(url string) (err error, found bool) {
-	collection := Session.DB(c.Base).C(constants.PageCollectionName)
+	collection := Session.DB(Base).C(constants.PageCollectionName)
 	result := models.Page{}
 	empty := models.Page{}
 	err = collection.Find(bson.M{"url": url}).One(&result)
@@ -120,7 +120,7 @@ func (c PageController) CheckPageExists(url string) (err error, found bool) {
 }
 
 //Create update page
-func (c PageController) AdminUpdatePage(url string) revel.Result {
+func (c PageController) GetAdminUpdatePage(url string) revel.Result {
 	revel.INFO.Println("Page.UpdatePage started")
 	err, found := c.CheckPageExists(url)
 	if err != nil {
@@ -129,7 +129,7 @@ func (c PageController) AdminUpdatePage(url string) revel.Result {
 	if found == false {
 		return c.NotFound("Страница не найдена")
 	}
-	collection := Session.DB(c.Base).C(constants.PageCollectionName)
+	collection := Session.DB(Base).C(constants.PageCollectionName)
 	result := models.Page{}
 	if err = collection.Find(bson.M{"url": url}).One(&result); err != nil {
 		c.RenderError(err)
@@ -150,12 +150,13 @@ func (c PageController) UpdatePage(page_header, page_content, page_url string) r
 		revel.INFO.Printf("CreatePage validation errors %v", c.Validation.Errors)
 		c.Validation.Keep()
 		c.FlashParams()
-		return c.Redirect(PageController.AdminCreatePage)
+		return c.Redirect(PageController.GetAdminCreatePage)
 	}
 	//TODO: Add permission (session check)
 	//Get page by url
 	//TODO: Remove security hole (user can delete all pages with same url using hidden value)
 	//Remove all pages with same url
+	//TODO: Do real update not delete
 	if err := c.DelPages(page_url); err != nil {
 		c.RenderError(err)
 	}
@@ -168,14 +169,14 @@ func (c PageController) UpdatePage(page_header, page_content, page_url string) r
 }
 
 func (c PageController) DelPages(url string) (err error) {
-	collection := Session.DB(c.Base).C(constants.PageCollectionName)
+	collection := Session.DB(Base).C(constants.PageCollectionName)
 	err = collection.Remove(bson.M{"url": url})
 	revel.INFO.Printf("Pages with url %s removed", url)
 	return
 }
 
 func (c PageController) SavePage(p models.Page) (err error) {
-	collection := Session.DB(c.Base).C(constants.PageCollectionName)
+	collection := Session.DB(Base).C(constants.PageCollectionName)
 	err = collection.Insert(&p)
 	revel.INFO.Printf("Page %s saved", p.Url)
 	return

@@ -6,24 +6,23 @@ package controllers
 import (
 	"fmt"
 	"github.com/robfig/revel"
-	"labix.org/v2/mgo"
 	"github.com/zionist/charitablefond/app/constants"
+	"labix.org/v2/mgo"
 )
 
-
-var required_configs = [...]string{"mongodb.host", "mongodb.port"}
-
+//module variables
 var (
-	Session   *mgo.Session
+	Session *mgo.Session
+  Base string
 )
 
 type MongoDbController struct {
-	Host      string
-	Port      string
-	User      string
-	Password  string
-	Base      string
-	Url       string
+	Host     string
+	Port     string
+	User     string
+	Password string
+	Base     string
+	Url      string
 	*revel.Controller
 }
 
@@ -73,7 +72,7 @@ func (p *MongoDbController) GetConnectionUrl() {
 	p.Host, _ = p.GetConfig("mongodb.host", constants.MongoHost)
 	p.Port, _ = p.GetConfig("mongodb.port", constants.MongoPort)
 	p.User, _ = p.GetConfig("mongodb.user", "")
-	p.Base, _ = p.GetConfig("mongodb.base", constants.MongoBase)
+	Base, _ = p.GetConfig("mongodb.base", constants.MongoBase)
 	if p.Password == "" {
 		p.Password, _ = p.GetConfig("mongodb.pass", "")
 	}

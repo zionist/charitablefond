@@ -6,4 +6,5 @@ const MongoHost = "127.0.0.1"
 const MongoBase = "fond"
 
 const PageCollectionName = "pages"
-const FrontPage = "/page/test"
+const UsersCollectionName = "users"
+const FrontPage = "/page/index"

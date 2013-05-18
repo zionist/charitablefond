@@ -6,6 +6,7 @@ import (
 
 type Application struct {
 	PageController
+  UserController
 }
 
 //Test application

@@ -4,23 +4,26 @@
 
 GET     /                                       PageController.Index
 
-#admin create
-GET     /admin/create                           PageController.AdminCreatePage
-POST    /admin/create             		PageController.CreatePage 
+# Admin create
+GET     /admin/create                           PageController.GetAdminCreatePage
+POST    /admin/create                           PageController.CreatePage 
 
-#admin update
-GET     /admin/update/{url}                     PageController.AdminUpdatePage
-POST    /admin/update             		PageController.UpdatePage 
+# Admin update
+GET     /admin/update/{url}                     PageController.GetAdminUpdatePage
+POST    /admin/update                           PageController.UpdatePage 
 
-#admin delete
-#GET     /admin/update/{url}                     PageController.AdminUpdatePage
-GET    /admin/delete/{url}            		PageController.AdminDelete 
+# Admin delete
+GET    /admin/delete/{url}                      PageController.GetAdminDelete 
 
-#admin list of pages
-GET     /admin/list                             PageController.AdminListPages
+# Admin list of pages
+GET     /admin/list                             PageController.GetAdminListPages
 
-#pages
-GET     /page/{url}                             PageController.Page
+# Pages
+GET     /page/{url}                             PageController.GetPage
+
+# User login
+GET     /login                                  UserController.GetLoginPage
+POST    /login                                  UserController.Login
 
 
 # Ignore favicon requests

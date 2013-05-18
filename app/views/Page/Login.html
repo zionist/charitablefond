@@ -1,0 +1,25 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+
+<div class="container">
+	<div class="row">
+		<h4 class="text-info text-right span"> Войти </h4>
+	</div>
+	<div>
+		{{range .errors}}
+			<p class="text-error">
+				{{.Message}}
+			</p>
+		{{end}}
+	</div>
+
+  <form method="post" action="/login"> 
+    <p><label for="username">Имя пользователя:</label> <input id="username" maxlength="254" name="username" type="text" value="{{.flash.username}}" /></p>
+        <p><label for="password">Пароль:</label> <input id="password" name="password" type="password" /></p>
+        <input type="submit" class="btn btn-info" value="Вход" />
+  </form>
+</div>
+
+{{template "footer.html" .}}
+
