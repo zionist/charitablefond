@@ -11,6 +11,7 @@ import (
 type PageController struct {
 	*revel.Controller
 	MongoDbController
+  UserController
 }
 
 //Front page
@@ -27,7 +28,7 @@ func (c PageController) GetPage(url string) revel.Result {
 		c.RenderError(err)
 	}
 	if found == false {
-		return c.NotFound("Страница не найдена")
+		return c.NotFound(c.Message("page_not_found"))
 	}
 	collection := Session.DB(Base).C(constants.PageCollectionName)
 	result := models.Page{}
@@ -42,6 +43,9 @@ func (c PageController) GetPage(url string) revel.Result {
 //Admin pages
 //List of pages
 func (c PageController) GetAdminListPages() revel.Result {
+  if !c.LoggedIn() {
+	  return c.Forbidden(c.Message("forbidden"))
+  }
 	result := []models.Page{}
 	collection := Session.DB(Base).C(constants.PageCollectionName)
 	if err := collection.Find(bson.M{}).All(&result); err != nil {
@@ -63,24 +67,33 @@ func (c PageController) GetAdminListPages() revel.Result {
 //Delete plain page
 //TODO: add permissions check for deleting
 func (c PageController) GetAdminDelete(url string) revel.Result {
+  if !c.LoggedIn() {
+	  return c.Forbidden(c.Message("forbidden"))
+  }
 	if err := c.DelPages(url); err != nil {
 		return c.RenderError(err)
 	}
-	c.RenderArgs["page_content"] = "Удалено"
+	c.RenderArgs["page_content"] = c.Message("deleted")
 	return c.RenderTemplate("Page/Page.html")
 }
 
 //Create creation page
 func (c PageController) GetAdminCreatePage() revel.Result {
+  if !c.LoggedIn() {
+	  return c.Forbidden(c.Message("forbidden"))
+  }
 	return c.RenderTemplate("Page/AdminCreatePage.html")
 }
 
 //POST create plain pages 
 func (c PageController) CreatePage(page_header, page_content, page_url string) revel.Result {
+  if !c.LoggedIn() {
+	  return c.Forbidden(c.Message("forbidden"))
+  }
 	revel.INFO.Println("Page.CreatePage started")
-	c.Validation.MinSize(page_header, 1).Message("Требуется заголовок")
-	c.Validation.MinSize(page_url, 1).Message("Требуется ссылка на страницу")
-	c.Validation.MinSize(page_content, 1).Message("Требуется контент")
+	c.Validation.MinSize(page_header, 1).Message(c.Message("header_required"))
+	c.Validation.MinSize(page_url, 1).Message(c.Message("url_required"))
+	c.Validation.MinSize(page_content, 1).Message(c.Message("content_required"))
 	if c.Validation.HasErrors() {
 		revel.INFO.Printf("CreatePage validation errors %v", c.Validation.Errors)
 		c.Validation.Keep()
@@ -93,7 +106,7 @@ func (c PageController) CreatePage(page_header, page_content, page_url string) r
 		c.RenderError(err)
 	}
 	if found == true {
-		c.Validation.Errors = append(c.Validation.Errors, &revel.ValidationError{fmt.Sprintf("Страница со ссылкой %s уже  создана", page_url), ""})
+		c.Validation.Errors = append(c.Validation.Errors, &revel.ValidationError{fmt.Sprintf("%s %s", c.Message("already_created"), page_url), ""})
 		c.Validation.Keep()
 		c.FlashParams()
 		return c.Redirect(PageController.GetAdminCreatePage)
@@ -103,6 +116,7 @@ func (c PageController) CreatePage(page_header, page_content, page_url string) r
 	if err := c.SavePage(p); err != nil {
 		c.RenderError(err)
 	}
+
 	return c.Redirect("/admin/update/%s", page_url)
 }
 
@@ -121,13 +135,16 @@ func (c PageController) CheckPageExists(url string) (err error, found bool) {
 
 //Create update page
 func (c PageController) GetAdminUpdatePage(url string) revel.Result {
+  if !c.LoggedIn() {
+	  return c.Forbidden(c.Message("forbidden"))
+  }
 	revel.INFO.Println("Page.UpdatePage started")
 	err, found := c.CheckPageExists(url)
 	if err != nil {
 		c.RenderError(err)
 	}
 	if found == false {
-		return c.NotFound("Страница не найдена")
+		return c.NotFound(c.Message("not_found"))
 	}
 	collection := Session.DB(Base).C(constants.PageCollectionName)
 	result := models.Page{}
@@ -142,10 +159,13 @@ func (c PageController) GetAdminUpdatePage(url string) revel.Result {
 
 //POST update plain pages 
 func (c PageController) UpdatePage(page_header, page_content, page_url string) revel.Result {
+  if !c.LoggedIn() {
+	  return c.Forbidden(c.Message("forbidden"))
+  }
 	revel.INFO.Println("Page.UpdatePage started")
-	c.Validation.MinSize(page_header, 1).Message("Требуется заголовок")
-	c.Validation.MinSize(page_url, 1).Message("Требуется ссылка на страницу")
-	c.Validation.MinSize(page_content, 1).Message("Требуется контент")
+	c.Validation.MinSize(page_header, 1).Message(c.Message("header_required"))
+	c.Validation.MinSize(page_url, 1).Message(c.Message("url_required"))
+	c.Validation.MinSize(page_content, 1).Message(c.Message("content_required"))
 	if c.Validation.HasErrors() {
 		revel.INFO.Printf("CreatePage validation errors %v", c.Validation.Errors)
 		c.Validation.Keep()

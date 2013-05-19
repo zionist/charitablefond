@@ -21,9 +21,10 @@ GET     /admin/list                             PageController.GetAdminListPages
 # Pages
 GET     /page/{url}                             PageController.GetPage
 
-# User login
+# User login and logout
 GET     /login                                  UserController.GetLoginPage
 POST    /login                                  UserController.Login
+GET     /logout                                 UserController.Logout
 
 
 # Ignore favicon requests

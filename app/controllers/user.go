@@ -1,12 +1,12 @@
 package controllers
 
 import (
-	"fmt"
-  "io"
-	"github.com/robfig/revel"
 	"crypto/sha512"
+	"fmt"
+	"github.com/robfig/revel"
 	"github.com/zionist/charitablefond/app/constants"
 	"github.com/zionist/charitablefond/app/models"
+	"io"
 	"labix.org/v2/mgo/bson"
 )
 
@@ -21,30 +21,14 @@ type UserController struct {
 //GET auth page
 func (c UserController) GetLoginPage() revel.Result {
 	revel.INFO.Println("UserController.Auth started")
-	/*
-		err, found := c.CheckPageExists(url)
-		if err != nil {
-			c.RenderError(err)
-		}
-		if found == false {
-			return c.NotFound("Страница не найдена")
-		}
-		collection := Session.DB(c.Base).C(constants.PageCollectionName)
-		result := models.Page{}
-		if err = collection.Find(bson.M{"url": url}).One(&result); err != nil {
-			c.RenderError(err)
-		}
-		c.RenderArgs["page_header"] = result.Header
-		c.RenderArgs["page_content"] = result.Content
-	*/
 	return c.RenderTemplate("Page/Login.html")
 }
 
 func deny_login(c UserController) revel.Result {
-  c.Validation.Errors = append(c.Validation.Errors, &revel.ValidationError{"Не верный пользователь или пароль", ""})
-  c.Validation.Keep()
-  c.FlashParams()
-  return c.Redirect(UserController.Login)
+	c.Validation.Errors = append(c.Validation.Errors, &revel.ValidationError{c.Message("wrong_login_or_pass"), ""})
+	c.Validation.Keep()
+	c.FlashParams()
+	return c.Redirect(UserController.Login)
 }
 
 func (c UserController) Login(username, password string) revel.Result {
@@ -55,17 +39,35 @@ func (c UserController) Login(username, password string) revel.Result {
 		c.RenderError(err)
 	}
 	if result.Username != username {
-      return deny_login(c)
+		return deny_login(c)
 	} else {
-    hash := sha512.New()
-    io.WriteString(hash, password)
-    sum := fmt.Sprintf("%x", hash.Sum(nil))
-    if sum != result.Password {
-      return deny_login(c)
-    } else {
-	    fmt.Println(c.Session["user"])
-	    c.Session["user"] = username
-    }
-  }
-	return c.RenderTemplate("Page/Login.html")
+		hash := sha512.New()
+		io.WriteString(hash, password)
+		sum := fmt.Sprintf("%x", hash.Sum(nil))
+		if sum != result.Password {
+			return deny_login(c)
+		} else {
+			revel.INFO.Printf("user %s has logged in", username)
+			c.Session["user"] = username
+		}
+	}
+	return c.Redirect(PageController.GetAdminListPages)
+}
+
+func (c UserController) Logout() revel.Result {
+	revel.INFO.Println("User.Logout started")
+	if c.LoggedIn() {
+		revel.INFO.Printf("user %s has logged out", c.Session["user"])
+		c.Session["user"] = ""
+		return c.Redirect(PageController.Index)
+	}
+	return c.Forbidden(c.Message("forbidden"))
+}
+
+//Check is user logged in
+func (c UserController) LoggedIn() (hasper bool) {
+	if len(c.Session["user"]) != 0 {
+		hasper = true
+	}
+  return
 }
