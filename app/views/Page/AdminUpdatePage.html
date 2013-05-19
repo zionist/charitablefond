@@ -1,13 +1,17 @@
 {{set . "title" "Home"}}
 {{template "header.html" .}}
 
+<script type="text/javascript" src="/public/js/ckeditor/ckeditor.js"></script>
+
 <div class="container">
 	<div class="row"> <p> </p></div>
 	<div class="row">
-		<a href="/admin/list">Список страниц</a> <!--<span class="divider">/</span>-->
+		<a href="/admin/list">список страниц</a> <!--<span class="divider">/</span>-->
+      <span class="divider">/</span>
+    <a href="/logout">выйти</a> 
 	</div>
 	<div class="row">
-		<h3 class="text-info text-right"> Редактировать страницу </h3>
+		<h3 class="text-info text-left"> Редактировать страницу </h3>
 	</div>
 	<div>
 		{{range .errors}}
@@ -31,7 +35,8 @@
 		<p>
 			<div class="row">
 				<label for="id_username">Контент:</label>
-				<textarea name="page_content" id="page_content" rows="20" class="span12">{{.page_content}}</textarea>
+				<textarea name="page_content" id="page_content" rows="40" class="span12">{{.page_content}}</textarea>
+        <script type="text/javascript"> CKEDITOR.replace('page_content', { width:"98%" }) </script>
 			</div>
 		</p>
 		<div class="row">

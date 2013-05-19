@@ -37,6 +37,11 @@ func (c PageController) GetPage(url string) revel.Result {
 	}
 	c.RenderArgs["page_header"] = result.Header
 	c.RenderArgs["page_content"] = result.Content
+	c.RenderArgs["page_content"] = result.Content
+  if c.LoggedIn() == true {
+    c.RenderArgs["logged"] = "true"
+	  c.RenderArgs["url"] = url
+  }
 	return c.RenderTemplate("Page/Page.html")
 }
 

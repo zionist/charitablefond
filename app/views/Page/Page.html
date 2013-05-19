@@ -1,14 +1,24 @@
 {{set . "title" "Главная страница"}}
 {{template "header.html" .}}
+{{template "menu.html" .}}
 
 <div class="container">
 	<div class="row"> <p> </p></div>
+  {{if eq .logged "true"}} 
 	<div class="row">
-		<a href="/admin/list">Список страниц</a> <!--<span class="divider">/</span>-->
+    <a href="/admin/list">список страниц</a> 
+      <span class="divider">/</span>
+    <a href="/admin/update/{{.url}}">редактировать</a> 
+      <span class="divider">/</span>
+    <a href="/logout">выйти</a> 
 	</div>
-	<h1> {{.page_header}}</h1>
+  {{end}}
+	<h2 class="text-info"> {{.page_header}}</h2>
 	{{raw .page_content}}
 </div>
 
+<script src="/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/js/menu.js" type="text/javascript" charset="utf-8"></script>
 {{template "footer.html" .}}
 

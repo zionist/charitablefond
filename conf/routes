@@ -9,7 +9,7 @@ GET     /admin/create                           PageController.GetAdminCreatePag
 POST    /admin/create                           PageController.CreatePage 
 
 # Admin update
-GET     /admin/update/{url}                     PageController.GetAdminUpdatePage
+GET     /admin/update/{<.+>url}                     PageController.GetAdminUpdatePage
 POST    /admin/update                           PageController.UpdatePage 
 
 # Admin delete
@@ -19,7 +19,7 @@ GET    /admin/delete/{url}                      PageController.GetAdminDelete
 GET     /admin/list                             PageController.GetAdminListPages
 
 # Pages
-GET     /page/{url}                             PageController.GetPage
+GET     /page/{<.+>url}                             PageController.GetPage
 
 # User login and logout
 GET     /login                                  UserController.GetLoginPage
