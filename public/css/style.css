@@ -1,0 +1,110 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans Condensed', sans-serif;*/
+}
+
+.logo_img {
+  float: left;
+  margin-right: 10px;
+}
+
+.logo {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.blue {
+  color: #6ca9e0;
+}
+
+.menu {
+  margin-top: 10px;
+}
+
+
+/* change menu color */
+.nav > li > a:hover, .nav-tabs .open .dropdown-toggle, .nav-pills .open .dropdown-toggle, .nav > li.dropdown.open.active > a:hover, .nav > li.dropdown.open.active > a:focus {
+      background-color: #6ca9e0;
+      background-image: none;
+          border-radius(0px);
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
+  background-color: #6ca9e0;
+  background-image: None;
+}
+
+.nav-pills > .active > a, .nav-pills > .active > a:focus, .nav-pills > .active > a:hover {
+  color: #ffffff;
+  background-color: #6ca9e0;
+}
+
+/* remove round corners */
+.nav-pills .dropdown-menu, .nav > li > a {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+/* remove border in dropdown menu */
+.dropdown-menu {
+  border: None
+}
+
+.sky {
+  position: absolute;
+  width: 100%;
+  height: 186px;
+  top: 80px;
+  left: 0;
+  z-index: -1;
+  background: url("/public/images/sky.png") center no-repeat #fff;
+}
+
+#small_background {
+  background: url("/public/images/small_background.png") left no-repeat;
+  height: 80px;
+  width: 100%;
+}
+#content {
+  margin-top: 210px;
+}
+
+#menu_container {
+  margin-top: 15px;
+}
+
+#line {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  height: 40px;
+  background-color: #e2e2e2;
+  z-index: -2;
+}
+
+
+/* Sticky footer */
+
+html,
+body {
+  height: 100%;
+/* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -80px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 80px;
+}
+#footer {
+  /* background-color: #f5f5f5;*/

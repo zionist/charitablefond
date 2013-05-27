@@ -1,24 +1,54 @@
-{{set . "title" "Главная страница"}}
 {{template "header.html" .}}
-{{template "menu.html" .}}
 
-<div class="container">
-	<div class="row"> <p> </p></div>
-  {{if eq .logged "true"}} 
-	<div class="row">
-    <a href="/admin/list">список страниц</a> 
-      <span class="divider">/</span>
-    <a href="/admin/update/{{.url}}">редактировать</a> 
-      <span class="divider">/</span>
-    <a href="/logout">выйти</a> 
-	</div>
-  {{end}}
-	<h2 class="text-info"> {{.page_header}}</h2>
-	{{raw .page_content}}
+<!-- header image -->
+<div class="sky"> </div>
+
+<!-- Part 1: Wrap all page content here -->
+<div id="wrap">
+
+  <!-- Begin page content -->
+  <div class="container">
+    <div id="menu_container">
+      <div class="row"> 
+        <!-- logo -->
+        <div class="span3"> <img class="logo_img" width="70px" src="/public/images/logo.png"> 
+          <p class="logo"> Open <span class="blue">Cloud</span> </p> 
+        </div>
+        <!-- menu -->
+        <div class="menu span6 offset3 text-center"> {{template "menu.html" .}} </div>
+      </div>
+    </div>
+
+
+  <div id="content">
+      {{if eq .logged "true"}} 
+      <div class="row">
+        <a href="/admin/list">список страниц</a> 
+          <span class="divider">/</span>
+        <a href="/admin/update/{{.url}}">редактировать</a> 
+          <span class="divider">/</span>
+        <a href="/logout">выйти</a> 
+      </div>
+      {{end}}
+      <h2 class="text-info"> {{.page_header}}</h2>
+      {{raw .page_content}}
+  </div>
+
+
+
+  </div>
+
+  <div id="push"></div>
+</div>
+
+<div id="footer">
+  <div class="container">
+  </div>
+  <div id="line"> </div>
+  <div id="small_background"> </div>
 </div>
 
 <script src="/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/public/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
 <script src="/public/js/menu.js" type="text/javascript" charset="utf-8"></script>
 {{template "footer.html" .}}
-
