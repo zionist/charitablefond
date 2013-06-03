@@ -11,7 +11,7 @@ import (
 type PageController struct {
 	*revel.Controller
 	MongoDbController
-  UserController
+	UserController
 }
 
 //Front page
@@ -38,19 +38,29 @@ func (c PageController) GetPage(url string) revel.Result {
 	c.RenderArgs["page_header"] = result.Header
 	c.RenderArgs["page_content"] = result.Content
 	c.RenderArgs["page_content"] = result.Content
-  if c.LoggedIn() == true {
-    c.RenderArgs["logged"] = "true"
-	  c.RenderArgs["url"] = url
-  }
+	if c.LoggedIn() == true {
+		c.RenderArgs["logged"] = "true"
+		c.RenderArgs["url"] = url
+	}
+	//Set icon variable
+	for _, v := range constants.IconTypesRegex {
+		if v.MatchString(url) {
+			c.RenderArgs["icon"] = (v.String()[1:])
+      break
+		} else {
+			c.RenderArgs["icon"] = constants.DefaultIcon
+		}
+	}
+  fmt.Println(c.RenderArgs["icon"])
 	return c.RenderTemplate("Page/Page.html")
 }
 
 //Admin pages
 //List of pages
 func (c PageController) GetAdminListPages() revel.Result {
-  if !c.LoggedIn() {
-	  return c.Forbidden(c.Message("forbidden"))
-  }
+	if !c.LoggedIn() {
+		return c.Forbidden(c.Message("forbidden"))
+	}
 	result := []models.Page{}
 	collection := Session.DB(Base).C(constants.PageCollectionName)
 	if err := collection.Find(bson.M{}).All(&result); err != nil {
@@ -72,9 +82,9 @@ func (c PageController) GetAdminListPages() revel.Result {
 //Delete plain page
 //TODO: add permissions check for deleting
 func (c PageController) GetAdminDelete(url string) revel.Result {
-  if !c.LoggedIn() {
-	  return c.Forbidden(c.Message("forbidden"))
-  }
+	if !c.LoggedIn() {
+		return c.Forbidden(c.Message("forbidden"))
+	}
 	if err := c.DelPages(url); err != nil {
 		return c.RenderError(err)
 	}
@@ -84,17 +94,17 @@ func (c PageController) GetAdminDelete(url string) revel.Result {
 
 //Create creation page
 func (c PageController) GetAdminCreatePage() revel.Result {
-  if !c.LoggedIn() {
-	  return c.Forbidden(c.Message("forbidden"))
-  }
+	if !c.LoggedIn() {
+		return c.Forbidden(c.Message("forbidden"))
+	}
 	return c.RenderTemplate("Page/AdminCreatePage.html")
 }
 
 //POST create plain pages 
 func (c PageController) CreatePage(page_header, page_content, page_url string) revel.Result {
-  if !c.LoggedIn() {
-	  return c.Forbidden(c.Message("forbidden"))
-  }
+	if !c.LoggedIn() {
+		return c.Forbidden(c.Message("forbidden"))
+	}
 	revel.INFO.Println("Page.CreatePage started")
 	c.Validation.MinSize(page_header, 1).Message(c.Message("header_required"))
 	c.Validation.MinSize(page_url, 1).Message(c.Message("url_required"))
@@ -140,9 +150,9 @@ func (c PageController) CheckPageExists(url string) (err error, found bool) {
 
 //Create update page
 func (c PageController) GetAdminUpdatePage(url string) revel.Result {
-  if !c.LoggedIn() {
-	  return c.Forbidden(c.Message("forbidden"))
-  }
+	if !c.LoggedIn() {
+		return c.Forbidden(c.Message("forbidden"))
+	}
 	revel.INFO.Println("Page.UpdatePage started")
 	err, found := c.CheckPageExists(url)
 	if err != nil {
@@ -164,9 +174,9 @@ func (c PageController) GetAdminUpdatePage(url string) revel.Result {
 
 //POST update plain pages 
 func (c PageController) UpdatePage(page_header, page_content, page_url string) revel.Result {
-  if !c.LoggedIn() {
-	  return c.Forbidden(c.Message("forbidden"))
-  }
+	if !c.LoggedIn() {
+		return c.Forbidden(c.Message("forbidden"))
+	}
 	revel.INFO.Println("Page.UpdatePage started")
 	c.Validation.MinSize(page_header, 1).Message(c.Message("header_required"))
 	c.Validation.MinSize(page_url, 1).Message(c.Message("url_required"))

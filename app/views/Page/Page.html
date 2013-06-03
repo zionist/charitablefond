@@ -1,7 +1,28 @@
 {{template "header.html" .}}
 
 <!-- header image -->
-<div class="sky"> </div>
+<div class="sky"> 
+  <div class="curve">  
+    {{if eq .icon "cloud"}} 
+      <div class="curve_text"> 
+          <div class="icon"> <img src="/public/images/cloud_icon.png" width="180px" /> </div>
+          Просто создайте свое облако
+      </div>
+    {{end}}
+    {{if eq .icon "web"}} 
+      <div class="curve_text"> 
+          <div class="icon"> <img src="/public/images/web_icon.png" width="150px" /> </div>
+         Сложные веб приложения просто
+      </div>
+    {{end}}
+    {{if eq .icon "it"}} 
+      <div class="curve_text"> 
+          <div class="icon"> <img src="/public/images/it_icon.png" width="180px" /> </div>
+         Поддержка Linux \ Unix инфрастуктуры
+      </div>
+    {{end}}
+  </div>
+</div>
 
 <!-- Part 1: Wrap all page content here -->
 <div id="wrap">
@@ -42,10 +63,22 @@
 </div>
 
 <div id="footer">
-  <div class="container">
+  <div id="small_background"> 
+    <div id="online_helper"> 
+      <div id="question">?</div> 
+      <div id="online_help">online консультант</div> 
+    </div>
   </div>
-  <div id="line"> </div>
-  <div id="small_background"> </div>
+  <div id="line">
+    <div class="container">
+      <div class="row">
+        <div class="span12 contact-info">  
+          <p> <span class="dark_grey">+7 (861) </span> <span class="blue">233-33-32 <span class="dark_grey">|</span> контактные данные </span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script src="/public/js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>

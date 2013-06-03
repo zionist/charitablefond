@@ -14,7 +14,11 @@
 }
 
 .blue {
-  color: #6ca9e0;
+  color: #3a87ad;
+}
+
+.dark_grey {
+  color: #979797
 }
 
 .menu {
@@ -61,10 +65,36 @@
   background: url("/public/images/sky.png") center no-repeat #fff;
 }
 
+.curve {
+  position: absolute;
+  right: 0;
+  float: right;
+  width: 500px;
+  height: 186px;
+  background: url("/public/images/curve.png") center no-repeat ;
+  z-index: 0;
+}
+
+.icon {
+  margin-bottom: 25px;
+}
+
+.curve_text {
+  width: 250px;
+  text-align: center;
+  font-size: 20px;
+  color:  #6ca9e0;
+  float: right;
+  margin-top: 30px;
+  margin-right: 40px;
+}
+
+
 #small_background {
   background: url("/public/images/small_background.png") left no-repeat;
   height: 80px;
-  width: 100%;
+  width: 250px;
+  float: left;
 }
 #content {
   margin-top: 210px;
@@ -75,12 +105,30 @@
 }
 
 #line {
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  height: 40px;
-  background-color: #e2e2e2;
-  z-index: -2;
+  padding-top: 20px;
+}
+
+#online_helper {
+  padding-top: 43px;
+  padding-left: 10px;
+}
+
+#question {
+  font-size: 40px;
+  color: white;
+  float: left;
+}
+
+#online_help {
+  color: white;
+  font-size: 20px;
+  float: left;
+  margin-left: 5px;
+}
+
+.contact-info {
+  font-size: 20px;
+  padding-top: 10px;
 }
 
 
@@ -107,4 +155,5 @@ body {
   height: 80px;
 }
 #footer {
-  /* background-color: #f5f5f5;*/
+  background: url("/public/images/line.png") 0 25px repeat-x
+}
