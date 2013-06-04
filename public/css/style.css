@@ -89,13 +89,13 @@
   margin-right: 40px;
 }
 
-
-#small_background {
-  background: url("/public/images/small_background.png") left no-repeat;
+#small_background_end {
+  background: url("/public/images/curve_small_end.png") left no-repeat;
   height: 80px;
-  width: 250px;
+  width: 326px;
   float: left;
 }
+
 #content {
   margin-top: 210px;
 }
@@ -104,31 +104,28 @@
   margin-top: 15px;
 }
 
-#line {
-  padding-top: 20px;
-}
-
 #online_helper {
-  padding-top: 43px;
-  padding-left: 10px;
+  padding-top: 35px;
+  padding-left: 20px;
 }
 
 #question {
   font-size: 40px;
-  color: white;
   float: left;
 }
 
 #online_help {
-  color: white;
   font-size: 20px;
   float: left;
   margin-left: 5px;
 }
 
 .contact-info {
-  font-size: 20px;
-  padding-top: 10px;
+  width: auto;
+  float: left;
+  color: white;
+  font-size: 15px;
+  margin-top: 37px;
 }
 
 
@@ -146,7 +143,7 @@ body {
   height: auto !important;
   height: 100%;
   /* Negative indent footer by it's height */
-  margin: 0 auto -80px;
+  margin: 0 80px -80px;
 }
 
 /* Set the fixed height of the footer here */
@@ -155,5 +152,5 @@ body {
   height: 80px;
 }
 #footer {
-  background: url("/public/images/line.png") 0 25px repeat-x
+  background: url("/public/images/line.png") 0 33px repeat-x;
 }
