@@ -1,13 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html>
   <head>
     <title>{{.title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="public/css/bootstrap-responsive.css" rel="stylesheet">
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/public/css/style.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" type="image/png" href="/public/images/favicon.png">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans:400,300,600&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" type="image/png" href="/public/images/icon.png">
     {{range .moreStyles}}
       <link rel="stylesheet" type="text/css" href="/public/{{.}}">
     {{end}}

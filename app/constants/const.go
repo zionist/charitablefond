@@ -18,7 +18,7 @@ var IconTypesRegex []*regexp.Regexp = []*regexp.Regexp{
 	regexp.MustCompile("^web"),
 	regexp.MustCompile("^cloud"),
 	regexp.MustCompile("^ip"),
-	regexp.MustCompile("^it"),
+	regexp.MustCompile("^linux"),
 }
 
 const DefaultIcon = "cloud"

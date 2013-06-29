@@ -15,7 +15,7 @@
          Сложные веб приложения просто
       </div>
     {{end}}
-    {{if eq .icon "it"}} 
+    {{if eq .icon "linux"}} 
       <div class="curve_text"> 
           <div class="icon"> <img src="/public/images/it_icon.png" width="180px" /> </div>
          Поддержка Linux \ Unix инфрастуктуры
@@ -28,34 +28,35 @@
 <div id="wrap">
 
   <!-- Begin page content -->
-  <div class="container">
+  <div class="container-fluid">
     <div id="menu_container">
-      <div class="row"> 
+      <div class="row-fluid"> 
         <!-- logo -->
         <div class="span3"> <img class="logo_img" width="70px" src="/public/images/logo.png"> 
-          <p class="logo"> Open <span class="blue">Cloud</span> </p> 
+            <p class="logo"> <a class="no_underline" href="/"><span class="black">Open</span> <span class="blue">Cloud</span></a> </p> 
         </div>
         <!-- menu -->
-        <div class="menu span6 offset3 text-center"> {{template "menu.html" .}} </div>
+        <div class="menu span8 text-center"> 
+          <div class="menu_container"> 
+            {{template "menu.html" .}}
+          </div>
+        </div>
       </div>
     </div>
 
-
-  <div id="content">
-      {{if eq .logged "true"}} 
-      <div class="row">
-        <a href="/admin/list">список страниц</a> 
-          <span class="divider">/</span>
-        <a href="/admin/update/{{.url}}">редактировать</a> 
-          <span class="divider">/</span>
-        <a href="/logout">выйти</a> 
-      </div>
-      {{end}}
-      <h2 class="text-info"> {{.page_header}}</h2>
-      {{raw .page_content}}
-  </div>
-
-
+    <div id="content">
+        {{if eq .logged "true"}} 
+        <div class="row-fluid">
+          <a href="/admin/list">список страниц</a> 
+            <span class="divider">/</span>
+          <a href="/admin/update/{{.url}}">редактировать</a> 
+            <span class="divider">/</span>
+          <a href="/logout">выйти</a> 
+        </div>
+        {{end}}
+        <h2 class="text-info"> {{.page_header}}</h2>
+        {{raw .page_content}}
+    </div>
 
   </div>
 
@@ -69,7 +70,7 @@
       <div id="online_help" class="blue">online консультант</div> 
     </div>
   </div>
-  <div class="contact-info"> +7 861 222-22-22 | info@opcl.net </div>
+  <div class="contact-info"> +7 909 444 28 27 | info@opcl.net </div>
 
 </div>
 

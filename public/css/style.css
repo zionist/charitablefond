@@ -1,6 +1,20 @@
 * {
   font-family: 'Open Sans', sans-serif;
   /*font-family: 'Open Sans Condensed', sans-serif;*/
+  margin: 0;
+  padding 0;
+}
+
+h1, h2, h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  color: #3a87ad;
+}
+
+h4 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  color: #3a87ad;
 }
 
 .logo_img {
@@ -17,12 +31,21 @@
   color: #3a87ad;
 }
 
+.black {
+  color: black;
+}
+
 .dark_grey {
   color: #979797
 }
 
 .menu {
   margin-top: 10px;
+}
+
+.menu_container {
+  width: auto;
+  float: right;
 }
 
 
@@ -75,6 +98,14 @@
   z-index: 0;
 }
 
+.no_underline {
+    text-decoration: none;
+}
+
+.no_underline:hover {
+    text-decoration: none;
+}
+
 .icon {
   margin-bottom: 25px;
 }
@@ -102,6 +133,7 @@
 
 #menu_container {
   margin-top: 15px;
+  width: inherit;
 }
 
 #online_helper {

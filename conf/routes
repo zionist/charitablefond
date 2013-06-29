@@ -13,7 +13,7 @@ GET     /admin/update/{<.+>url}                     PageController.GetAdminUpdat
 POST    /admin/update                           PageController.UpdatePage 
 
 # Admin delete
-GET    /admin/delete/{url}                      PageController.GetAdminDelete 
+GET    /admin/delete/{<.+>url}                      PageController.GetAdminDelete 
 
 # Admin list of pages
 GET     /admin/list                             PageController.GetAdminListPages
