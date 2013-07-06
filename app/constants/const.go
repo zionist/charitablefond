@@ -7,9 +7,10 @@ import (
 const MongoConnection_duration = "3s"
 const MongoPort = "27017"
 const MongoHost = "127.0.0.1"
-const MongoBase = "fond"
+const MongoBase = "opcl"
 
 const PageCollectionName = "pages"
+const BlockCollectionName = "blocks"
 const UsersCollectionName = "users"
 const FrontPage = "/page/index"
 

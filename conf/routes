@@ -5,21 +5,21 @@
 GET     /                                       PageController.Index
 
 # Admin create
-GET     /admin/create                           PageController.GetAdminCreatePage
-POST    /admin/create                           PageController.CreatePage 
+GET     /admin/pages/create                           PageController.GetAdminCreatePage
+POST    /admin/pages/create                           PageController.CreatePage 
 
 # Admin update
-GET     /admin/update/{<.+>url}                     PageController.GetAdminUpdatePage
-POST    /admin/update                           PageController.UpdatePage 
+GET     /admin/pages/update/{<.+>url}                 PageController.GetAdminUpdatePage
+POST    /admin/pages/update                           PageController.UpdatePage 
 
 # Admin delete
-GET    /admin/delete/{<.+>url}                      PageController.GetAdminDelete 
+GET    /admin/pages/delete/{<.+>url}                  PageController.GetAdminDelete 
 
 # Admin list of pages
-GET     /admin/list                             PageController.GetAdminListPages
+GET     /admin/pages/list                             PageController.GetAdminListPages
 
 # Pages
-GET     /page/{<.+>url}                             PageController.GetPage
+GET     /page/{<.+>url}                               PageController.GetPage
 
 # User login and logout
 GET     /login                                  UserController.GetLoginPage

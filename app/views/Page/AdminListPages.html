@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row"> <p> </p></div>
 	<div class="row">
-		<a href="/admin/create">создать страницу</a> 
+		<a href="/admin/pages/create">создать страницу</a> 
       <span class="divider">/</span>
     <a href="/logout">выйти</a> 
 	</div>
@@ -16,7 +16,7 @@
 		<th> Краткое содержание </th>
 	</tr>
 	{{range .pages}}
-	<tr onclick="location.href = '/admin/update/{{.Url}}';">
+	<tr onclick="location.href = '/admin/pages/update/{{.Url}}';">
 		<td> {{.Header}} </td>
 		<td> {{.Url}} </td>
 		<td> {{.Content}} </td>
