@@ -1,2 +1,1 @@
-Project readme
-Hello world!
+Simple golang revel based cms
