@@ -1,10 +1,10 @@
-{{set . "title" .title }}
+{{set . "title" "Страницы сайта"}}
 {{template "header.html" .}}
 
 <div class="container">
 	<div class="row"> <p> </p></div>
 	<div class="row">
-		<a href="/admin/create/page">создать страницу</a> 
+		<a href="/admin/create">создать страницу</a> 
       <span class="divider">/</span>
     <a href="/logout">выйти</a> 
 	</div>
@@ -15,16 +15,14 @@
 		<th> Ссылка </th>
 		<th> Краткое содержание </th>
 	</tr>
-    {{if eq .content_type "page"}} 
-        {{range .content}}
-        <tr onclick="location.href = '/admin/update/page/{{.Url}}';">
-            <td> {{.Header}} </td>
-            <td> {{.Url}} </td>
-            <td> {{.Content}} </td>
-        </tr>
-        {{ end }}
+	{{range .pages}}
+	<tr onclick="location.href = '/admin/update/{{.Url}}';">
+		<td> {{.Header}} </td>
+		<td> {{.Url}} </td>
+		<td> {{.Content}} </td>
+	</tr>
+	{{ end }}
 	</table>
-    {{end}}
 </div>
 
 {{template "footer.html" .}}

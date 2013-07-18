@@ -7,11 +7,12 @@
 	<div class="row"> <p> </p></div>
 	<div class="row">
 		<a href="/admin/pages/list">список страниц</a> 
+		<a href="/admin/blocks/list">список блоков</a> 
       <span class="divider">/</span>
     <a href="/logout">выйти</a> 
 	</div>
 	<div class="row">
-		<h3 class="text-info text-left"> Создать страницу </h3>
+		<h3 class="text-info text-left"> Создать блок </h3>
 	</div>
 	<div>
 		{{range .errors}}
@@ -20,7 +21,7 @@
 			</p>
 		{{end}}
 	</div>
-	<form action="/admin/create/page" method="POST">
+	<form action="/admin/create" method="POST">
 		<p>
 			<div class="row">
 				<label for="id_username">Заголовок:</label>

@@ -2,21 +2,21 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                                       PageController.Index
+GET     /                                             PageController.Index
 
-# Admin create
-GET     /admin/pages/create                           PageController.GetAdminCreatePage
-POST    /admin/pages/create                           PageController.CreatePage 
+# Admin create pages
+GET     /admin/create/{<.+>content_type}              AdminController.GetAdminCreateContent
+POST    /admin/create/{<.+>content_type}              AdminController.PostAdminCreateContent 
 
 # Admin update
-GET     /admin/pages/update/{<.+>url}                 PageController.GetAdminUpdatePage
-POST    /admin/pages/update                           PageController.UpdatePage 
+GET     /admin/update/page/{<.+>url}                 AdminController.GetAdminUpdatePage
+POST    /admin/update/page                           AdminController.UpdatePage 
 
 # Admin delete
-GET    /admin/pages/delete/{<.+>url}                  PageController.GetAdminDelete 
+GET    /admin/pages/delete/{<.+>url}                  AdminController.GetAdminDelete 
 
-# Admin list of pages
-GET     /admin/pages/list                             PageController.GetAdminListPages
+# Admin list of cotent (pages or blocks)
+GET     /admin/list/{<.+>content_type}                        AdminController.GetAdminListContent
 
 # Pages
 GET     /page/{<.+>url}                               PageController.GetPage

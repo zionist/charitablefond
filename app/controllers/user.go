@@ -51,7 +51,7 @@ func (c UserController) Login(username, password string) revel.Result {
 			c.Session["user"] = username
 		}
 	}
-	return c.Redirect(PageController.GetAdminListPages)
+	return c.Redirect("/admin/pages/list")
 }
 
 func (c UserController) Logout() revel.Result {
