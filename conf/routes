@@ -2,24 +2,26 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+module:testrunner
+
 GET     /                                               PageController.Index
 
 # Admin create content
-GET     /admin/create/{<.+>content_type}                AdminController.GetAdminCreateContent
-POST    /admin/create/{<.+>content_type}                AdminController.PostAdminCreateContent 
+GET     /admin/create/:content_type                     AdminController.GetAdminCreateContent
+POST    /admin/create/:content_type                     AdminController.PostAdminCreateContent 
 
 # Admin update
-GET     /admin/update/{<.+>content_type}/{<.+>url}      AdminController.GetAdminUpdateContent
-POST    /admin/update/{<.+>content_type}                AdminController.PostAdminUpdateContent 
+GET     /admin/update/:content_type/*url                AdminController.GetAdminUpdateContent
+POST    /admin/update/:content_type                     AdminController.PostAdminUpdateContent 
 
 # Admin delete
-GET    /admin/delete/{<.+>content_type}/{<.+>url}       AdminController.GetAdminDeleteContent
+GET    /admin/delete/:content_type/*url                 AdminController.GetAdminDeleteContent
 
 # Admin list of cotent (pages or blocks)
-GET     /admin/list/{<.+>content_type}                  AdminController.GetAdminListContent
+GET     /admin/list/:content_type                       AdminController.GetAdminListContent
 
 # Pages
-GET     /page/{<.+>url}                                 PageController.GetPage
+GET     /page/*url                                      PageController.GetPage
 
 # User login and logout
 GET     /login                                          UserController.GetLoginPage
@@ -31,9 +33,4 @@ GET     /logout                                         UserController.Logout
 GET     /favicon.ico                                    404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/{<.+>filepath}                          Static.Serve("public")
-
-
-
-# Catch all
-#*       /{controller}/{action}                  {controller}.{action}
+GET     /public/*filepath                       Static.Serve("public")

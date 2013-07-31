@@ -10,8 +10,8 @@ import (
 
 type AdminController struct {
 	*revel.Controller
-	*MongoDbController
-	*UserController
+	MongoDbController
+	UserController
 }
 
 func (c AdminController) CheckContentExists(page_url string, collection string) (count int, err error) {
@@ -114,7 +114,6 @@ func (c AdminController) PostAdminCreatePage() revel.Result {
 	}
 	// TODO: Add permission (sessison check)
 	count, err := c.CheckContentExists(page_url, constants.PageCollectionName)
-	fmt.Println(count)
 	if err != nil {
 		c.RenderError(err)
 	}
@@ -149,7 +148,7 @@ func (c AdminController) GetAdminUpdateContent(content_type, url string) revel.R
 	    return c.GetAdminUpdatePage(url)
     }
     c.Response.Status = 500
-    revel.ERROR.Println("Wrong content type")
+    revel.ERROR.Printf("Wrong content type %s", content_type)
 	return c.RenderText("internal_server_error")
 }
 

@@ -21,7 +21,7 @@ type UserController struct {
 //GET auth page
 func (c UserController) GetLoginPage() revel.Result {
 	revel.INFO.Println("UserController.Auth started")
-	return c.RenderTemplate("Page/Login.html")
+	return c.RenderTemplate("Admin/Login.html")
 }
 
 func deny_login(c UserController) revel.Result {
