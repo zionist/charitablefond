@@ -4,12 +4,8 @@
 <!-- <script type="text/javascript" src="/public/js/ckeditor/ckeditor.js"></script> -->
 
 <div class="container">
-	<div class="row"> <p> </p></div>
-	<div class="row">
-		<a href="/admin/list/pages">список страниц</a> <!--<span class="divider">/</span>-->
-      <span class="divider">/</span>
-    <a href="/logout">выйти</a> 
-	</div>
+
+    {{template "admin_menu.html" .}}
 	<div class="row">
 		<h3 class="text-info text-left"> Редактировать страницу </h3>
 	</div>
@@ -20,7 +16,7 @@
 			</p>
 		{{end}}
 	</div>
-	<form action="/admin/pages/update" method="POST">
+	<form action="/admin/update/page" method="POST">
 		<p>
 			<div class="row">
 				<label for="id_username">Заголовок:</label>
@@ -47,7 +43,7 @@
 		<div class="row"> <p> </p> </div>
 		<div class="row">
 			<div class="span1">
-				<a href="/admin/pages/delete/{{.page_url}}" class="btn btn-danger"/>Удалить</a>
+				<a href="/admin/delete/page/{{.page_url}}" class="btn btn-danger"/>Удалить</a>
 			</div>
 			<div class="span1 offset9">
 				<a href="/page/{{.page_url}}" class="btn btn-info"/>Просмотреть</a>

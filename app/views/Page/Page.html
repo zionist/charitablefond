@@ -46,13 +46,7 @@
 
     <div id="content">
         {{if eq .logged "true"}} 
-        <div class="row-fluid">
-          <a href="/admin/list/pages">список страниц</a> 
-            <span class="divider">/</span>
-          <a href="/admin/pages/update/{{.url}}">редактировать</a> 
-            <span class="divider">/</span>
-          <a href="/logout">выйти</a> 
-        </div>
+            {{ template "admin_menu.html" .}}
         {{end}}
         <h2 class="text-info"> {{.page_header}}</h2>
         {{raw .page_content}}

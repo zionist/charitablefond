@@ -4,12 +4,7 @@
 <!-- <script type="text/javascript" src="/public/js/ckeditor/ckeditor.js"></script> -->
 
 <div class="container">
-	<div class="row"> <p> </p></div>
-	<div class="row">
-		<a href="/admin/pages/list">список страниц</a> 
-      <span class="divider">/</span>
-    <a href="/logout">выйти</a> 
-	</div>
+    {{ template "admin_menu.html" .}}
 	<div class="row">
 		<h3 class="text-info text-left"> Создать страницу </h3>
 	</div>

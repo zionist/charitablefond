@@ -51,7 +51,7 @@ func (c UserController) Login(username, password string) revel.Result {
 			c.Session["user"] = username
 		}
 	}
-	return c.Redirect("/admin/pages/list")
+	return c.Redirect("/admin/list/page")
 }
 
 func (c UserController) Logout() revel.Result {
@@ -68,6 +68,7 @@ func (c UserController) Logout() revel.Result {
 func (c UserController) LoggedIn() (hasper bool) {
 	if len(c.Session["user"]) != 0 {
 		hasper = true
+		revel.INFO.Printf("user %s has login in", c.Session["user"])
 	}
   return
 }

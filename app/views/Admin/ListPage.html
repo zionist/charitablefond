@@ -2,12 +2,7 @@
 {{template "header.html" .}}
 
 <div class="container">
-	<div class="row"> <p> </p></div>
-	<div class="row">
-		<a href="/admin/create/page">создать страницу</a> 
-      <span class="divider">/</span>
-    <a href="/logout">выйти</a> 
-	</div>
+    {{ template "admin_menu.html" .}}
 	<h3 class="text-info text-left"> {{.title}} </h3>
 	<table class="table table-hover table-striped">
 	<tr>
