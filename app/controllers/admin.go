@@ -41,14 +41,11 @@ func (c AdminController) GetAdminListPages() revel.Result {
 	return c.RenderTemplate("Admin/ListPage.html")
 }
 
-//Admin pages
-//List of content types
 func (c AdminController) GetAdminListContent(content_type string) revel.Result {
 	revel.INFO.Println(content_type)
 	if !c.LoggedIn() {
 		return c.Forbidden(c.Message("forbidden"))
 	}
-	//TODO: Make type cast
 	if content_type == "page" {
 		return c.GetAdminListPages()
 	} else if content_type == "block" {
@@ -57,7 +54,7 @@ func (c AdminController) GetAdminListContent(content_type string) revel.Result {
 		//collection := Session.DB(Base).C(constants.BlockCollectionName)
 	}
 	c.Response.Status = 500
-	revel.ERROR.Println("Wrong admin list type")
+	revel.ERROR.Println("Wrong content type")
 	return c.RenderText("internal_server_error")
 	//TODO: add sorting
 }
@@ -144,11 +141,11 @@ func (c AdminController) GetAdminUpdateContent(content_type, url string) revel.R
 	if !c.LoggedIn() {
 		return c.Forbidden(c.Message("forbidden"))
 	}
-    if content_type == "page" {
-	    return c.GetAdminUpdatePage(url)
-    }
-    c.Response.Status = 500
-    revel.ERROR.Printf("Wrong content type %s", content_type)
+	if content_type == "page" {
+		return c.GetAdminUpdatePage(url)
+	}
+	c.Response.Status = 500
+	revel.ERROR.Printf("Wrong content type %s", content_type)
 	return c.RenderText("internal_server_error")
 }
 
@@ -184,11 +181,11 @@ func (c AdminController) PostAdminUpdateContent(content_type string) revel.Resul
 	if !c.LoggedIn() {
 		return c.Forbidden(c.Message("forbidden"))
 	}
-    if content_type == "page" {
-        return c.PostAdminUpdatePage()
-    }
-    c.Response.Status = 500
-    revel.ERROR.Println("Wrong content type")
+	if content_type == "page" {
+		return c.PostAdminUpdatePage()
+	}
+	c.Response.Status = 500
+	revel.ERROR.Println("Wrong content type")
 	return c.RenderText("internal_server_error")
 }
 

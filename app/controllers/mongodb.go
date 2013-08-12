@@ -1,5 +1,5 @@
 /*
-Package mongodb implements simple mongodb connection wrapper 
+Package mongodb implements simple mongodb connection wrapper
 */
 package controllers
 
@@ -13,7 +13,7 @@ import (
 //module variables
 var (
 	Session *mgo.Session
-  Base string
+	Base    string
 )
 
 type MongoDbController struct {

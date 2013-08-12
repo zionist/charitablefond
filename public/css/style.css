@@ -3,6 +3,7 @@
   /*font-family: 'Open Sans Condensed', sans-serif;*/
   margin: 0;
   padding 0;
+  font-size: 100%;
 }
 
 h1, h2, h3 {
@@ -20,6 +21,7 @@ h4 {
 .logo_img {
   float: left;
   margin-right: 10px;
+  margin-top: 5px;
 }
 
 .logo {
@@ -81,20 +83,21 @@ h4 {
 .sky {
   position: absolute;
   width: 100%;
-  height: 186px;
+  height: 140px;
+  /*height: 186;*/
   top: 80px;
   left: 0;
   z-index: -1;
-  background: url("/public/images/sky.png") center no-repeat #fff;
+  background: url("/public/images/sky.jpg") center no-repeat #fff;
 }
 
 .curve {
   position: absolute;
   right: 0;
   float: right;
-  width: 500px;
-  height: 186px;
-  background: url("/public/images/curve.png") center no-repeat ;
+  width: 376px;
+  height: 140px;
+  background: url("/public/images/curve_new.png") center no-repeat ;
   z-index: 0;
 }
 
@@ -128,7 +131,7 @@ h4 {
 }
 
 #content {
-  margin-top: 210px;
+  margin-top: 155px;
 }
 
 #menu_container {

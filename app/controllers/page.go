@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/robfig/revel"
 	"github.com/zionist/charitablefond/app/constants"
 	"github.com/zionist/charitablefond/app/models"
@@ -29,7 +28,6 @@ func (c PageController) GetPage(url string) revel.Result {
 	if err != nil {
 		c.RenderError(err)
 	}
-	fmt.Println(count)
 	if count <= 0 {
 		return c.NotFound(c.Message("page_not_found"))
 	} else if count > 1 {
