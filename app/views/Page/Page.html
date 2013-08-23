@@ -5,20 +5,27 @@
   <div class="curve">  
     {{if eq .icon "cloud"}} 
       <div class="curve_text"> 
-          <div class="icon"> <img src="/public/images/cloud_icon.png" width="180px" /> </div>
-          Просто создайте свое облако
+          <div class="icon"> 
+            <img id="icon" src="/public/images/cloud_icon.png" width="95px" /> </div>
+         Создайте свое собственное облако
       </div>
     {{end}}
     {{if eq .icon "web"}} 
       <div class="curve_text"> 
-          <div class="icon"> <img src="/public/images/web_icon.png" width="150px" /> </div>
+          <div class="icon"> <img src="/public/images/web_icon.png" width="95px" /> </div>
          Сложные веб приложения просто
       </div>
     {{end}}
     {{if eq .icon "linux"}} 
       <div class="curve_text"> 
-          <div class="icon"> <img src="/public/images/it_icon.png" width="180px" /> </div>
-         Поддержка Linux \ Unix инфрастуктуры
+          <div class="icon"> <img src="/public/images/linux_icon.png" width="95px" /> </div>
+         Поддержка GNU/Linux инфрастуктуры
+      </div>
+    {{end}}
+    {{if eq .icon "voip"}} 
+      <div class="curve_text"> 
+          <div class="icon"> <img src="/public/images/voip_icon.png" width="95px" /> </div>
+        Кратно сократить расходы на связь
       </div>
     {{end}}
   </div>

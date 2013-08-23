@@ -46,5 +46,17 @@ func (c PageController) GetPage(url string) revel.Result {
 		c.RenderArgs["logged"] = "true"
 		c.RenderArgs["url"] = url
 	}
+
+	//Set icon variable
+	for _, v := range constants.IconTypesRegex {
+		if v.MatchString(url) {
+			c.RenderArgs["icon"] = (v.String()[1:])
+			break
+		} else {
+			c.RenderArgs["icon"] = constants.DefaultIcon
+		}
+	}
+	revel.INFO.Println(c.RenderArgs["icon"])
+
 	return c.RenderTemplate("Page/Page.html")
 }
