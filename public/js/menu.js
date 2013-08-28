@@ -4,7 +4,7 @@
 
   set_active_tab = function() {
     var id, regex, req_str, _i, _len, _ref, _results;
-    _ref = ["web", "cloud", "ip", "linux"];
+    _ref = ["web", "cloud", "voip", "linux"];
     _results = [];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       id = _ref[_i];
