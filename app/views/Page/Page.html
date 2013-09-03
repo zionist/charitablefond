@@ -40,11 +40,13 @@
       <div class="row-fluid"> 
         <!-- logo -->
         <div class="span3"> <img class="logo_img" src="/public/images/logo.png" alt="logo"> 
+        <div class="visible-desktop">
             <p class="logo"> <a class="no_underline" href="/"><span class="black">Open</span> <span class="blue">Cloud</span></a> </p> 
+            </div>
         </div>
         <!-- menu -->
         <div class="menu span8 text-center"> 
-          <div class="menu_container"> 
+          <div class="menu_container visible-desktop" > 
             {{template "menu.html" .}}
           </div>
         </div>
